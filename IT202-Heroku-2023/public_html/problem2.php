@@ -8,7 +8,12 @@ function getTotal($arr) {
     $total = 0.00;
     //note: use the $arr variable, don't directly touch $a1-$a4
     //TODO do adding here
+    foreach($arr as $x)
+    {
+        $total = $total + $x;                   //collect a running total, plus equaling it
+    }                                           //lv238 2/8/2024
     //TODO do rounding stuff here (round to two decimals i.e., 0.10, 0.01, 0.00)
+    $total = number_format($total,2)."<br>";    //i believe this formats it correctly, makes all numbers have a .xx
     echo "The total is " . var_export($total, true);
 }
 echo "Problem 2: Adding Floats<br>";
