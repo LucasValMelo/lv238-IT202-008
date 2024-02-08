@@ -10,8 +10,8 @@ function processArray($arr) {
     //TODO add logic here to echo out only odd values
     foreach($arr as $x)
     {
-        if ($x%2 !=0)
-        {
+        if ($x%2 !=0)                         //lv238 2/8/2024
+        {                                     //for each element in arr, if their remainder is not 0, print it out
             echo $x;
         }
     }
