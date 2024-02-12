@@ -10,6 +10,21 @@ function bePositive($arr) {
     //note: use the $arr variable, don't directly touch $a1-$a4
     //TODO use echo to output all of the values as positive (even if they were originally positive) and maintain the original datatype
     //hint: may want to use var_dump() or similar to show final data types
+    foreach ($arr as $x)
+    {
+        
+        if (gettype($x) == "string")
+        {                                                       //lv238 2/12/24
+            $x = str_replace("-", "", $x);
+        }                                                //if string, replace "-" with a blank
+        if (gettype($x) == "double" || gettype($x) == "integer")
+        {
+            $x = abs($x);                               //if a double or integer, get the absolute value
+        }
+    }
+
+
+
 }
 echo "Problem 3: Be Positive<br>";
 ?>
