@@ -16,10 +16,12 @@ function bePositive($arr) {
         if (gettype($x) == "string")
         {                                                       //lv238 2/12/24
             $x = str_replace("-", "", $x);
+            var_dump($x);
         }                                                //if string, replace "-" with a blank
         if (gettype($x) == "double" || gettype($x) == "integer")
         {
-            $x = abs($x);                               //if a double or integer, get the absolute value
+            $x = abs($x);
+            var_dump($x);                               //if a double or integer, get the absolute value
         }
     }
 

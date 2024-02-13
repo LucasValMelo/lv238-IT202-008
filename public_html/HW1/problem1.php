@@ -12,7 +12,7 @@ function processArray($arr) {
     {
         if ($x%2 !=0)                         //lv238 2/8/2024
         {                                     //for each element in arr, if their remainder is not 0, print it out
-            echo $x;
+            var_dump($x);
         }
     }
 }
