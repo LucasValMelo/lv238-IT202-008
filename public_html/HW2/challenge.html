@@ -8,12 +8,19 @@
         window.addEventListener("load", () => {
             console.log("loaded via javascript");
             //TODO: add any extra onload processing you may need here
+
         });
         function getCurrentSelection() {
             setTimeout(() => {
                 //added this delay here as some solutions may require it to update properly (i.e., click code may complete before the navigation changes)
                 //TODO: add code for processing the current selection 
-
+                <p id = "login"></p>;
+                
+                <p id = "register"></p>;
+                <p id = "profile"></p>;
+                <p id = "logout"></p>;
+                var i = document.getSelection();
+                
                 //Note: likely you'll want to call updateCurrentPage towards the end
             }, 100);
         }
@@ -22,41 +29,57 @@
         /* TODO: make edits here */
         nav
         {
-            display: flex; /*horizontal navigation*/
-            background-color: chartreuse; /*such a dope color*/
+            display: block; /*horizontal navigation*/
+            background-color: #7fff00; /*such a dope color*/
             list-style-type: none; /*none set for the markers, so no moarkers appear*/ 
         }
         nav a
         {
             text-decoration: underline; /*make it UNDERLINE DARK GREEN LINKS*/
-            color:darkgreen
+            color:darkgreen;
+            list-style-type: none;
         }
         nav a:hover
         {
             color:blueviolet /*make them this discount purple when hovered*/
         }
-        ul
+        nav ul
         {
             list-style-type: none; /*remove the bulletpoints*/
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            
+            background-color: #7fff00;
         }
-        ul li::before
+        ul:not(nav ul)
         {
-            content: "✓" /*before remembering copy/paste, i was going to use something like "-v/"*/
+            list-style-type:"\2713";
         }
         h1,a
         {
-            text-transform: uppercase; /*uppercase the first letter using css*/
+            text-transform: capitalize; /*uppercase the first letter using css*/
         }
-        ul:not(nav ul) /*specifically NOT the navigation lists*/
+        :not(nav ul) /*specifically NOT the navigation lists*/
         {
             text-decoration: wavy;
-            list-style-type:georgian; /*fun typing*/
+            /*list-style-type:var(✓); /*fun typing*/
 
         }
-        nav a
+        nav li
         {
-            cursor: pointer; /*couldnt figure the last one out, someone told me to like, just use this*/ 
+            float: left;
         }
+        nav li a
+        {
+            list-style-type: none;
+            display: block;
+            color: darkblue;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        
     </style>
     <!-- make the necessary edits above this line -->
 
