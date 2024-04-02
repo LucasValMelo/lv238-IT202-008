@@ -1,5 +1,5 @@
 <?php
-require(__DIR__ . "/../../lib/functions.php");
+require(__DIR__ . "/../../partials/nav.php");
 ?>
 <form onsubmit="return validate(this)" method="POST">
     <div>
@@ -80,7 +80,7 @@ require(__DIR__ . "/../../lib/functions.php");
         catch(Exception $e)
         {
             echo " There was an error  registering <br>";
-            echo "<pre>" . var_export($e, true) . "<pre>";
+            echo "<pre>" . var_export($e, true) . "</pre>";
         }
     }
     
