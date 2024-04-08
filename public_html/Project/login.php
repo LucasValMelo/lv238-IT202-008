@@ -65,6 +65,9 @@ if (isset($_POST["email"]) && isset($_POST["password"])) {
                     if (password_verify($password, $hash))
                     {
                         echo "Welcome $email";
+                        $_SESSION["user"] = $user;
+                        die(header("Location: home.php"));
+
                     }
                     else
                     {
