@@ -30,8 +30,7 @@ if (isset($_POST["email"]) && isset($_POST["password"]) && isset($_POST["confirm
 {
     $email = se($_POST, "email", "", false);
     $password = se($_POST, "password", "", false);
-    $confirm = se
-    (
+    $confirm = se(
         $_POST,
         "confirm",
         "",
