@@ -4,7 +4,7 @@ require(__DIR__ . "/../../partials/nav.php");
 <form onsubmit="return validate(this)" method="POST">
     <div>
         <label for="email">Email/Username</label>
-        <input type="text" name="email" required />
+        <input type="text" id = "email" name="email" required />
     </div>
     <div>
         <label for="pw">Password</label>
@@ -13,12 +13,56 @@ require(__DIR__ . "/../../partials/nav.php");
     <input type="submit" value="Login" />
 </form>
 <script>
+    //logic for email val taken from https://www.simplilearn.com/tutorials/javascript-tutorial/email-validation-in-javascript#:~:text=We%20can%20validate%20email%2C%20password,compared%20with%20server%2Dside%20validation.
+    function emailVal(email)
+    {
+        /*var validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+
+        if (email.value.match(validRegex)) 
+        {
+             return true;
+        } 
+        else 
+        {
+            return false;
+        }
+    } */
+    //taken logic finished
     function validate(form) {
         //TODO 1: implement JavaScript validation
         //ensure it returns false for an error and true for success
+        let errorState = true;
+        let jemail = form.email.value;
+        let jpassword = form.password.value;
+        let jusername = form.username.value;
+        let validRegex = new RegExp(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/);
+        let valReg2 = new RegExp(/^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$/);
+        let userReg = new RegExp(/^[a-z0-9_-]{3,16}$/);
+
+        if (!/^[a-z0-9_-]{3,16}$/.test(jusername.value))
+        {
+            flash("Invalid test Username", "info");
+            errorState = false;
+        }
+        if (jpassword.length = 0)
+        {
+            flash("Password Cannot Be Empty", "info");
+            errorState = false;
+        }
+        if(jpassword.length < 8)
+        {
+            flash("Password is Too Short", "info");
+            errorState = false;
+        }
+        if(!valReg2.test(jemail))
+        {
+            flash("Email Address is invalid", "info");
+            errorState = false;
+        }
 
         //TODO update clientside validation to check if it should
         //valid email or username
+        return errorState;
         return true;
     }
 </script>

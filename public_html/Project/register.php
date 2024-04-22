@@ -5,11 +5,11 @@ reset_session();
 <form onsubmit="return validate(this)" method="POST">
     <div>
         <label for="email">Email</label>
-        <input type="email" name="email" required />
+        <input type="email" id = "email"name="email" required />
     </div>
     <div>
         <label for="username">Username</label>
-        <input type="text" name="username" required maxlength="30" />
+        <input type="text" id ="username"name="username" required maxlength="30" />
     </div>
     <div>
         <label for="pw">Password</label>
@@ -17,16 +17,72 @@ reset_session();
     </div>
     <div>
         <label for="confirm">Confirm</label>
-        <input type="password" name="confirm" required minlength="8" />
+        <input type="password" id = "confirm" name="confirm" required minlength="8" />
     </div>
     <input type="submit" value="Register" />
 </form>
 <script>
-    function validate(form) {
-        //TODO 1: implement JavaScript validation
-        //ensure it returns false for an error and true for success
+    //logic for email val taken from https://www.simplilearn.com/tutorials/javascript-tutorial/email-validation-in-javascript#:~:text=We%20can%20validate%20email%2C%20password,compared%20with%20server%2Dside%20validation.
+        function emailVal(email)
+    {
+        var validRegex = new RegExp(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/);
 
-        return true;
+        if (validRegex.test(email.value)) 
+        {
+             return true;
+        } 
+        else 
+        {
+            return false;
+        }
+    }
+    //taken logic finished  
+    function validate(form) {
+        let errorState = true;
+        let jemail = form.email.value;
+        let jpassword = form.password.value;
+        let jusername = form.username.value;
+        let jconfirm = form.confirm.value;
+        let validRegex = new RegExp(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/);
+        let valReg2 = new RegExp(/^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$/);
+        let userReg = new RegExp(/^[a-z0-9_-]{3,16}$/);
+
+        if (!/^[a-z0-9_-]{3,16}$/.test(jusername.value))
+        {
+            flash("Invalid test Username", "info");
+            errorState = false;
+        }
+        if (jpassword.length = 0)
+        {
+            flash("Password Cannot Be Empty", "info");
+            errorState = false;
+        }
+        if(jpassword.length < 8)
+        {
+            flash("Password is Too Short", "info");
+            errorState = false;
+        }
+        if(!valReg2.test(jemail))
+        {
+            flash("Email Address is invalid", "info");
+            errorState = false;
+        }
+        if(jconfirm.length === 0)
+        {
+            flash("Confirm Password Field Should Not Be Empty", "info");
+            errorState = false;
+        }
+        if(jpassword!=jconfirm)
+        {
+            flash("Passwords Must Match", "info");
+            errorState = false;
+        }
+        
+
+
+        //TODO update clientside validation to check if it should
+        //valid email or username
+        return errorState;
     }
 </script>
 <?php
