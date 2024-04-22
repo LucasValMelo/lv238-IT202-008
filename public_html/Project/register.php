@@ -100,6 +100,7 @@ if (isset($_POST["email"]) && isset($_POST["password"]) && isset($_POST["confirm
         flash("Email must not be empty", "danger");
         $hasError = true;
     }
+    //hoping change appears in git
     //sanitize
     $email = sanitize_email($email);
     //validate
