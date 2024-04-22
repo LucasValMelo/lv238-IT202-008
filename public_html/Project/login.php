@@ -39,7 +39,7 @@ require(__DIR__ . "/../../partials/nav.php");
         let valReg2 = new RegExp(/^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$/);
         let userReg = new RegExp(/^[a-z0-9_-]{3,16}$/);
 
-        if (!/^[a-z0-9_-]{3,16}$/.test(jusername.value))
+        if (!/^[a-z0-9_-]{3,16}$/.test(jusername))
         {
             flash("Invalid test Username", "info");
             errorState = false;

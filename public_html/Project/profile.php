@@ -128,7 +128,7 @@ $username = get_username();
             flash("Password and Confrim password must match", "warning");
             isValid = false;
         }
-        if (!/^[a-z0-9_-]{3,16}$/.test(un.value))
+        if (!/^[a-z0-9_-]{3,16}$/.test(un))
         {
             flash("Invalid test Username", "info");
             isValid = false;
