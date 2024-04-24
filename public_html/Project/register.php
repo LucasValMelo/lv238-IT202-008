@@ -11,7 +11,7 @@ reset_session();
         <label for="username">Username</label>
         <input type="text" id ="username"name="username" required maxlength="30" />
     </div>
-    <div>
+    <div>                                                               
         <label for="pw">Password</label>
         <input type="password" id="pw" name="password" required minlength="8" />
     </div>
@@ -22,6 +22,8 @@ reset_session();
     <input type="submit" value="Register" />
 </form>
 <script>
+                                                                //lv238 4/22/24
+
     //logic for email val taken from https://www.simplilearn.com/tutorials/javascript-tutorial/email-validation-in-javascript#:~:text=We%20can%20validate%20email%2C%20password,compared%20with%20server%2Dside%20validation.
         function emailVal(email)
     {
@@ -47,10 +49,10 @@ reset_session();
         let valReg2 = new RegExp(/^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$/);
         let userReg = new RegExp(/^[a-z0-9_-]{3,16}$/);
 
-        if (!/^[a-z0-9_-]{3,16}$/.test(jusername.value))
+        if (!/^[a-z0-9_-]{3,16}$/.test(jusername))
         {
             flash("Invalid test Username", "info");
-            errorState = false;
+            errorState = false;                             //lv238 4/22/24 
         }
         if (jpassword.length = 0)
         {
@@ -71,7 +73,7 @@ reset_session();
         {
             flash("Confirm Password Field Should Not Be Empty", "info");
             errorState = false;
-        }
+        }                                                           //LV238 4/22/24
         if(jpassword!=jconfirm)
         {
             flash("Passwords Must Match", "info");
@@ -100,7 +102,7 @@ if (isset($_POST["email"]) && isset($_POST["password"]) && isset($_POST["confirm
         flash("Email must not be empty", "danger");
         $hasError = true;
     }
-    //hoping change appears in git
+    //hoping change appears in git                                    lv238 4/22/24
     //sanitize
     $email = sanitize_email($email);
     //validate
@@ -127,7 +129,7 @@ if (isset($_POST["email"]) && isset($_POST["password"]) && isset($_POST["confirm
     if (!is_valid_password($password)) 
     {
         flash("Password too short", "danger");
-        $hasError = true;
+        $hasError = true;                                           //lv238 4/22/24
     }
     if (strlen($password) > 0 && $password !== $confirm) 
     {

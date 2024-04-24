@@ -125,10 +125,10 @@ $username = get_username();
         //example of using flash via javascript
         //find the flash container, create a new element, appendChild
         if (!isEqual(pw, con)) {
-            flash("Password and Confrim password must match", "warning");
+            flash("Password and Confirm password must match", "warning");
             isValid = false;
         }
-        if (!/^[a-z0-9_-]{3,16}$/.test(un.value))
+        if (!/^[a-z0-9_-]{3,16}$/.test(un))
         {
             flash("Invalid test Username", "info");
             isValid = false;

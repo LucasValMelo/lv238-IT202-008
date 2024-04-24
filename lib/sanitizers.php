@@ -7,7 +7,7 @@ function sanitize_email($email = "")
 function is_valid_email($email = "")
 {
     return filter_var(trim($email), FILTER_VALIDATE_EMAIL);
-}
+}                                                                   //lv238 4.23.24
 function is_valid_username($username)
 {
     return preg_match('/^[a-z0-9_-]{3,16}$/', $username);
