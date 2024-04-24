@@ -13,6 +13,7 @@ require(__DIR__ . "/../../partials/nav.php");
     <input type="submit" value="Login" />
 </form>
 <script>
+    //                                                      lv238 4/23/24
     //logic for email val taken from https://www.simplilearn.com/tutorials/javascript-tutorial/email-validation-in-javascript#:~:text=We%20can%20validate%20email%2C%20password,compared%20with%20server%2Dside%20validation.
     function emailVal(email)
     {
@@ -25,8 +26,8 @@ require(__DIR__ . "/../../partials/nav.php");
         else 
         {
             return false;
-        }
-    } */
+        }*/
+    } 
     //taken logic finished
     function validate(form) {
         //TODO 1: implement JavaScript validation
@@ -34,16 +35,16 @@ require(__DIR__ . "/../../partials/nav.php");
         let errorState = true;
         let jemail = form.email.value;
         let jpassword = form.password.value;
-        let jusername = form.username.value;
+        let jusername = form.username;
         let validRegex = new RegExp(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/);
         let valReg2 = new RegExp(/^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$/);
         let userReg = new RegExp(/^[a-z0-9_-]{3,16}$/);
 
-        if (!/^[a-z0-9_-]{3,16}$/.test(jusername.value))
+        /*if (!/^[a-z0-9_-]{3,16}$/.test(jusername))
         {
             flash("Invalid test Username", "info");
             errorState = false;
-        }
+        }*/
         if (jpassword.length = 0)
         {
             flash("Password Cannot Be Empty", "info");
@@ -53,17 +54,27 @@ require(__DIR__ . "/../../partials/nav.php");
         {
             flash("Password is Too Short", "info");
             errorState = false;
-        }
-        if(!valReg2.test(jemail))
+        }                                                       //lv238 4/23/24
+        if(jemail.includes("@"))            
         {
-            flash("Email Address is invalid", "info");
-            errorState = false;
+            if(!valReg2.test(jemail))
+            {
+                flash("Email Address is invalid", "info");
+                errorState = false;
+            }
+        }
+        else
+        {
+            if (!/^[a-z0-9_-]{3,16}$/.test(jemail))
+            {
+                flash("Invalid test Username", "info");
+                errorState = false;
+            }
         }
 
         //TODO update clientside validation to check if it should
         //valid email or username
         return errorState;
-        return true;
     }
 </script>
 <?php
@@ -92,7 +103,7 @@ if (isset($_POST["email"]) && isset($_POST["password"])) {
             $hasError = true;
         }
     } else {
-        if (!is_valid_username($email)) {
+        if (!is_valid_username($email)) {                                   //4/23/24 lv238
             flash("Invalid username");
             $hasError = true;
         }
@@ -111,7 +122,7 @@ if (isset($_POST["email"]) && isset($_POST["password"])) {
         $db = getDB();
         $stmt = $db->prepare("SELECT id, email, username, password from Users 
         where email = :email or username = :email");
-        try {
+        try {                                                                //4/23/24 lv238
             $r = $stmt->execute([":email" => $email]);
             if ($r) {
                 $user = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -133,13 +144,13 @@ if (isset($_POST["email"]) && isset($_POST["password"])) {
                         } else {
                             $_SESSION["user"]["roles"] = []; //no roles
                         }
-                        flash("Welcome, " . get_username());
+                        flash("Welcome, " . get_username());                            //lv238 4.23.24
                         die(header("Location: home.php"));
                     } else {
                         flash("Invalid password");
                     }
                 } else {
-                    flash("Email not found");
+                    flash("Email/Username not found");
                 }
             }
         } catch (Exception $e) {

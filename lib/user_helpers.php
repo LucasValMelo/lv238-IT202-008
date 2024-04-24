@@ -16,7 +16,7 @@ function is_logged_in($redirect = false, $destination = "login.php")
 }
 function has_role($role)
 {
-    if (is_logged_in() && isset($_SESSION["user"]["roles"])) {
+    if (is_logged_in() && isset($_SESSION["user"]["roles"])) {                          //4/23/24 lv238
         foreach ($_SESSION["user"]["roles"] as $r) {
             if ($r["name"] === $role) {
                 return true;
