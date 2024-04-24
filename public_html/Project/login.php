@@ -55,7 +55,7 @@ require(__DIR__ . "/../../partials/nav.php");
             flash("Password is Too Short", "info");
             errorState = false;
         }                                                       //lv238 4/23/24
-        if(jemail.contains("@"))            
+        if(jemail.includes("@"))            
         {
             if(!valReg2.test(jemail))
             {
