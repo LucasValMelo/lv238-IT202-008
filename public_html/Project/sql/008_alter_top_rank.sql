@@ -2,4 +2,4 @@ ALTER TABLE `TopAnime`
 
 
 MODIFY COLUMN `rank`   INT;
-MODIFY COLUMN `score`  FLOAT
+MODIFY COLUMN `score`  FLOAT;

@@ -2,15 +2,14 @@
 require(__DIR__ . "/../../partials/nav.php");
 ?>
 <form onsubmit="return validate(this)" method="POST">
-<?php render_input(["type" => "text", "id" => "email", "name" => "email", "label" => "Email/Username", "rules" => ["required" => true]]); ?>
-        <?php render_input(["type" => "password", "id" => "password", "name" => "password", "label" => "Password", "rules" => ["required" => true, "minlength" => 8]]); ?>
-        <?php render_button(["text" => "Login", "type" => "submit"]); ?>
+    <?php render_input(["type" => "text", "id" => "email", "name" => "email", "label" => "Email/Username", "rules" => ["required" => true]]); ?>
+    <?php render_input(["type" => "password", "id" => "password", "name" => "password", "label" => "Password", "rules" => ["required" => true, "minlength" => 8]]); ?>
+    <?php render_button(["text" => "Login", "type" => "submit"]); ?>
 </form>
 <script>
     //                                                      lv238 4/23/24
     //logic for email val taken from https://www.simplilearn.com/tutorials/javascript-tutorial/email-validation-in-javascript#:~:text=We%20can%20validate%20email%2C%20password,compared%20with%20server%2Dside%20validation.
-    function emailVal(email)
-    {
+    function emailVal(email) {
         /*var validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
         if (email.value.match(validRegex)) 
@@ -21,7 +20,7 @@ require(__DIR__ . "/../../partials/nav.php");
         {
             return false;
         }*/
-    } 
+    }
     //taken logic finished
     function validate(form) {
         //TODO 1: implement JavaScript validation
@@ -39,28 +38,21 @@ require(__DIR__ . "/../../partials/nav.php");
             flash("Invalid test Username", "info");
             errorState = false;
         }*/
-        if (jpassword.length = 0)
-        {
+        if (jpassword.length = 0) {
             flash("Password Cannot Be Empty", "info");
             errorState = false;
         }
-        if(jpassword.length < 8)
-        {
+        if (jpassword.length < 8) {
             flash("Password is Too Short", "info");
             errorState = false;
-        }                                                       //lv238 4/23/24
-        if(jemail.includes("@"))            
-        {
-            if(!valReg2.test(jemail))
-            {
+        } //lv238 4/23/24
+        if (jemail.includes("@")) {
+            if (!valReg2.test(jemail)) {
                 flash("Email Address is invalid", "info");
                 errorState = false;
             }
-        }
-        else
-        {
-            if (!/^[a-z0-9_-]{3,16}$/.test(jemail))
-            {
+        } else {
+            if (!/^[a-z0-9_-]{3,16}$/.test(jemail)) {
                 flash("Invalid test Username", "info");
                 errorState = false;
             }
@@ -139,7 +131,7 @@ if (isset($_POST["email"]) && isset($_POST["password"])) {
                             $_SESSION["user"]["roles"] = []; //no roles
                         }
                         flash("Welcome, " . get_username());                            //lv238 4.23.24
-                        die(header("Location: home.php"));
+                        redirect("home.php");
                     } else {
                         flash("Invalid password");
                     }
