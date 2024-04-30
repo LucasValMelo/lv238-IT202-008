@@ -2,8 +2,7 @@
 
 require(__DIR__ . "/../../../partials/nav.php");
 
-if (!has_role("Admin"))
-{
+if (!has_role("Admin")) {
     flash("You cannot view this page, why are you trying", "warning");
     die(header("Location: " . get_url("home.php")));
 }
@@ -11,22 +10,20 @@ if (!has_role("Admin"))
 function insert_animes_into_db($db, $animes, $mappings)
 {
     $query = "INSERT INTO `TopAnime` ";
-    if(count($animes)>0)
-    {
+    if (count($animes) > 0) {
         $cols = array_keys($animes[0]);
-        $query .= "(" . implode(",", array_map(function ($col)
-                                                {
-                                                    return "`$col`";
-                                                }, $cols
-                                              )) . ") VALUES ";
+        $query .= "(" . implode(",", array_map(
+            function ($col) {
+                return "`$col`";
+            },
+            $cols
+        )) . ") VALUES ";
 
         $values = [];
-        foreach ($animes as $i => $anime)
-        {
-            $animePlaceholder = array_map(function ($v) use ($i)
-                                                            {
-                                                                return ":" . $v . $i;
-                                                            }, $cols);
+        foreach ($animes as $i => $anime) {
+            $animePlaceholder = array_map(function ($v) use ($i) {
+                return ":" . $v . $i;
+            }, $cols);
             $values[] = "(" . implode(",", $animePlaceholder) . ")";
         }
 
@@ -41,26 +38,21 @@ function insert_animes_into_db($db, $animes, $mappings)
 
         $stmt = $db->prepare($query);
 
-        foreach ($animes as $i => $anime)
-        {
-            foreach ($cols as $col)
-            {
+        foreach ($animes as $i => $anime) {
+            foreach ($cols as $col) {
                 $placeholder = ":$col$i";
                 $val = isset($anime[$col]) ? $anime[$col] : "";
                 $param = PDO::PARAM_STR;
-                if(str_contains($mappings[$col], "int"))
-                {
+                if (str_contains($mappings[$col], "int")) {
                     $param = PDO::PARAM_INT;
                 }
                 $stmt->bindValue($placeholder, $val, $param);
             }
         }
-        try
-        {
+        try {
             $stmt->execute();
-        }catch (PDOException $e)
-        {
-            error_log(var_export($e,true));
+        } catch (PDOException $e) {
+            error_log(var_export($e, true));
         }
     }
 }
@@ -82,14 +74,14 @@ function process_single_anime($anime, $columns, $mappings)
 
     // Map anime data to columns
     foreach ($columns as $column) {
-        if(in_array($columns, ["id", "title", "rank", "score", "picture"])){
+        if (in_array($columns, ["id", "title", "rank", "score", "picture"])) {
             error_log("Record: " . var_export($record, true));
             continue;
         }
-        if(array_key_exists($column, $anime)){
+        if (array_key_exists($column, $anime)) {
             $record[$column] = $anime[$column];
-            if(empty($record[$column])){
-                if(str_contains($mappings[$column], "int")){
+            if (empty($record[$column])) {
+                if (str_contains($mappings[$column], "int")) {
                     $record[$column] = "0";
                 }
             }
@@ -142,10 +134,8 @@ function process_animes($result)
 }
 
 $action = se($_POST, "action", "", false);
-if($action)
-{
-    switch ($action)
-    {
+if ($action) {
+    switch ($action) {
         case "animes":
             $data = [];
             $endpoint = "https://myanimelist.p.rapidapi.com/anime/top/airing";
@@ -158,15 +148,15 @@ if($action)
 }
 ?>
 
-<div class= "container-fluid">
+<div class="container-fluid">
     <h1>Anime Data Management</h1>
     <div class="row">
         <div class="col">
-            <form method = "POST">
-                <input type="hidden" name = "action" value = "animes" />
-                <input type = "submit" class = "btn btn-primary" value = "refresh anis" />
+            <form method="POST">
+                <input type="hidden" name="action" value="animes" />
+                <input type="submit" class="btn btn-primary" value="refresh anis" />
             </form>
         </div>
-        
+
     </div>
 </div>

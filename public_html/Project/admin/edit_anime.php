@@ -68,7 +68,7 @@ if ($id > -1) {
     }
 } else {
     flash("Invalid id passed", "danger");
-    die(header("Location:" . get_url("admin/list_stocks.php")));
+    die(header("Location:" . get_url("admin/list_anime.php")));
 }
 /*$form = [
     ["type" => "text", "name" => "title", "placeholder" => "(ex. Bleach)", "label" => "Anime Name", "rules" => ["required" => "required"]],

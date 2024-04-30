@@ -33,9 +33,19 @@ if (count($_GET) > 0); {
 $query = "SELECT id, title, `rank`, score, picture FROM `TopAnime` WHERE 1=1";
 $params = [];
 $session_key = $_SERVER["SCRIPT_NAME"];
-$session_data = session_load($session_key);
-if ($session_data) {
-    $_GET = $session_data;
+$is_clear = isset($_GET["clear"]);
+if ($is_clear) {
+    session_delete($session_key);
+    unset($_GET["clear"]);
+    redirect($session_key);
+} else {
+    $session_data = session_load($session_key);
+}
+
+if (count($_GET) == 0 && isset($session_data) && count($session_data) > 0) {
+    if ($session_data) {
+        $_GET = $session_data;
+    }
 }
 
 if (count($_GET) > 0); {
@@ -66,11 +76,13 @@ if (count($_GET) > 0); {
     $high_rank = se($_GET, "high_rank", "-1", false);
     if (!empty($high_rank) && $high_rank > -1) {
         $query .= " AND score <= :high_rank";
-        $params[":high_rank"] = $low_rank;
+        $params[":high_rank"] = $high_rank;
     }
     $sort = se($_GET, "sort", "score", false);
-    if (!in_array($sort, [`rank`, `score`])) {
+    if (!in_array($sort, ["rank", "score"])) {
         $sort = "score";
+    } else {
+        $sort = "`$sort`";
     }
     $order = se($_GET, "order", "desc", false);
     if (!in_array($order, ["asc", "desc"])) {
@@ -105,7 +117,7 @@ try {
     flash("Unhandled error occurred", "danger");
 }
 
-$table = ["data" => $results, "title" => "Latest Anime", "edit_url" => get_url("admin/edit_anime.php")];
+$table = ["data" => $results, "title" => "Latest Anime", "edit_url" => get_url("admin/edit_anime.php"), "delete_url" => get_url("admin/delete_entry.php"), "view_url" => get_url("anime.php")];
 ?>
 <div class="container-fluid">
     <h3>List Anime</h3>

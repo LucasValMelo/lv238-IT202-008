@@ -30,3 +30,5 @@ require(__DIR__ . "/load_api_keys.php");
 require(__DIR__ . "/ani_mapper.php");
 
 require(__DIR__ . "/session_store.php");
+
+require(__DIR__ . "/redirect.php");
