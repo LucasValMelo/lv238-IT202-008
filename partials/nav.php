@@ -44,7 +44,8 @@ session_start();
                 <?php if (is_logged_in()) : ?>
                     <li class="nav-item"><a class="nav-link" href="<?php echo get_url('home.php'); ?>">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="<?php echo get_url('profile.php'); ?>">Profile</a></li>
-                    
+                    <li class="nav-item"><a class="nav-link" href="<?php echo get_url('admin/list_anime.php'); ?>">Listing</a></li>
+
                 <?php endif; ?>
                 <?php if (!is_logged_in()) : ?>
                     <li class="nav-item"><a class="nav-link" href="<?php echo get_url('login.php'); ?>">Login</a></li>
@@ -56,21 +57,20 @@ session_start();
                             Admin
                         </a>
                         <ul class="dropdown-menu">
-                            <li ><a class="dropdown-item"  href="<?php echo get_url('admin/create_role.php'); ?>">Create Role</a></li>
-                            <li ><a class="dropdown-item"  href="<?php echo get_url('admin/list_roles.php'); ?>">List Roles</a></li>
-                            <li ><a class="dropdown-item"  href="<?php echo get_url('admin/assign_roles.php'); ?>">Assign Roles</a></li>
-                            <li ><a class="dropdown-item"  href="<?php echo get_url('admin/testAPI.php'); ?>">TestAPI</a></li>
+                            <li><a class="dropdown-item" href="<?php echo get_url('admin/create_role.php'); ?>">Create Role</a></li>
+                            <li><a class="dropdown-item" href="<?php echo get_url('admin/list_roles.php'); ?>">List Roles</a></li>
+                            <li><a class="dropdown-item" href="<?php echo get_url('admin/assign_roles.php'); ?>">Assign Roles</a></li>
+                            <li><a class="dropdown-item" href="<?php echo get_url('admin/testAPI.php'); ?>">TestAPI</a></li>
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Anime Database 
+                            Anime Database
                         </a>
                         <ul class="dropdown-menu">
-                            <li ><a class="dropdown-item"  href="<?php echo get_url('admin/manage_anime_data.php'); ?>">Man. Anime Data</a></li>
-                            <li ><a class="dropdown-item"  href="<?php echo get_url('admin/list_anime.php'); ?>">Listing</a></li>
-                            <li ><a class="dropdown-item"  href="<?php echo get_url('admin/create_anime.php'); ?>">Create Listing</a></li>
-                            <li ><a class="dropdown-item"  href="<?php echo get_url('admin/edit_anime.php'); ?>">Edit Listing</a></li>
+                            <li><a class="dropdown-item" href="<?php echo get_url('admin/manage_anime_data.php'); ?>">Man. Anime Data</a></li>
+                            <li><a class="dropdown-item" href="<?php echo get_url('admin/create_anime.php'); ?>">Create Listing</a></li>
+                            <li><a class="dropdown-item" href="<?php echo get_url('admin/edit_anime.php'); ?>">Edit Listing</a></li>
                         </ul>
                     </li>
                 <?php endif; ?>

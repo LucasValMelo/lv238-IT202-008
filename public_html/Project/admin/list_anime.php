@@ -2,11 +2,8 @@
 //note we need to go up 1 more directory
 require(__DIR__ . "/../../../partials/nav.php");
 
-if (!has_role("Admin")) {
-    flash("You don't have permission to view this page", "warning");
-    die(header("Location: $BASE_PATH" . "/home.php"));
-}
 
+//if (has_role("Admin"))
 $form = [
     ["type" => "number", "name" => "low_score", "placeholder" => "Lowest Score", "label" => "Lowest --Score", "rules" => ["step" => ".01"], "include_margin" => false],
     ["type" => "number", "name" => "high_score", "placeholder" => "Highest Score", "label" => "Highest --Score", "rules" => ["step" => ".01"], "include_margin" => false],
@@ -116,8 +113,14 @@ try {
     error_log("Error fetching anime " . var_export($e, true));
     flash("Unhandled error occurred", "danger");
 }
+$edit = "";
+$delete = "";
+if (has_role("Admin")) {
+    $edit = get_url("admin/edit_anime.php");
+    $delete = get_url("admin/delete_entry.php");
+}
 
-$table = ["data" => $results, "title" => "Latest Anime", "edit_url" => get_url("admin/edit_anime.php"), "delete_url" => get_url("admin/delete_entry.php"), "view_url" => get_url("anime.php")];
+$table = ["data" => $results, "title" => "Latest Anime", "edit_url" => $edit, "delete_url" => $delete, "view_url" => get_url("anime.php")];
 ?>
 <div class="container-fluid">
     <h3>List Anime</h3>
