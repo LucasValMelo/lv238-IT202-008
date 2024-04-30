@@ -70,7 +70,7 @@ function process_single_anime($anime, $columns, $mappings)
     $title = isset($anime["title"]) ? se($anime["title"]) : $anime["title"];
     $rank = isset($anime["rank"]) ? se($anime["rank"]) : $anime["rank"];
     $score = isset($anime["score"]) ? se($anime["score"]) : $anime["score"];
-    $picURL = isset($anime["picture_url"]) ? se($anime["picture_url"]) : $anime["picture_url"];
+    $picURL = $anime["picture_url"];
 
 
     // Prepare record
@@ -78,11 +78,12 @@ function process_single_anime($anime, $columns, $mappings)
     $record["title"] = $title;
     $record["rank"] = $rank;
     $record["score"] = $score;
-    $record["picture_url"] = $picURL;
+    $record["picture"] = $picURL;
 
     // Map anime data to columns
     foreach ($columns as $column) {
-        if(in_array($columns, ["id", "title", "rank", "score", "picture_url"])){
+        if(in_array($columns, ["id", "title", "rank", "score", "picture"])){
+            error_log("Record: " . var_export($record, true));
             continue;
         }
         if(array_key_exists($column, $anime)){
