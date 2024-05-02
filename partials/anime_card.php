@@ -9,7 +9,7 @@ if (!isset($anime)) {
     <div class="card mx-auto" style="width: 18rem;">
         <?php if (isset($anime["username"])) : ?>
             <div class="card-header">
-                Owned By: <?php se($anime, "username", "N/A"); ?>
+                Bookmarked By: <?php se($anime, "username", "N/A"); ?>
             </div>
         <?php endif; ?>
         <img src=<?php se($anime["picture"]); ?> class="card-img-top" alt="...">
@@ -27,6 +27,7 @@ if (!isset($anime)) {
             <div class="card-body">
                 <?php if (isset($anime["id"])) : ?>
                     <a class="btn btn-secondary" href="<?php echo get_url("anime.php?id=" . $anime["id"]); ?>">View</a>
+                    <a class="btn btn-secondary" href="<?php echo get_url("unbookmark.php?id=" . $anime["id"]); ?>">Unbookmark</a>
                 <?php endif; ?>
                 <?php if (!isset($anime["user_id"]) || $anime["user_id"] === "N/A") : ?>
                     <?php

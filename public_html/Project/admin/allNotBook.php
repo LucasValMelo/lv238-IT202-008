@@ -27,7 +27,8 @@ if (count($_GET) > 0); {
 }
 
 
-$query = "SELECT id, title, `rank`, score FROM `TopAnime` WHERE 1=1";
+$query = "SELECT a.id, title, `rank`, score FROM `TopAnime` a WHERE a.id
+NOT IN (SELECT anime_id FROM `UserFavs`)";
 $params = [];
 $session_key = $_SERVER["SCRIPT_NAME"];
 $is_clear = isset($_GET["clear"]);

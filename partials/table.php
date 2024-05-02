@@ -16,7 +16,11 @@
     $_delete_url = se($data, "delete_url", "", false);
     $_delete_label = se($data, "delete_label", "Delete", false);
     $_delete_classes = se($data, "delete_classes", "btn btn-danger", false);
-    $_primary_key_column = se($data, "primary_key", "id", false); // used for the url generation
+    $_primary_key_column = se($data, "primary_key", "id", false);
+    $_bookmark_url = se($data, "bookmark_url", "", false);
+    $_bookmark_label = se($data, "bookmark_label", "Bookmark", false);
+    $_bookmark_classes = se($data, "bookmark_classes", "btn btn-info", false);
+    // used for the url generation
     //TODO persist query params (future lesson)
     //
     // edge case that should consider a redesign
@@ -75,6 +79,9 @@
                                 <?php endif; ?>
                                 <?php if ($_delete_url) : ?>
                                     <a href="<?php se($_delete_url); ?>?<?php se($_primary_key_column); ?>=<?php se($row, $_primary_key_column); ?>" class="<?php se($_delete_classes); ?>"><?php se($_delete_label); ?></a>
+                                <?php endif; ?>
+                                <?php if ($_bookmark_url) : ?>
+                                    <a href="<?php se($_bookmark_url); ?>?<?php se($_primary_key_column); ?>=<?php se($row, $_primary_key_column); ?>" class="<?php se($_bookmark_classes); ?>"><?php se($_bookmark_label); ?></a>
                                 <?php endif; ?>
                                 <?php if ($_post_self_form) : ?>
                                     <!-- TODO refactor -->
