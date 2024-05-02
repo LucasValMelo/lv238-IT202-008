@@ -45,7 +45,7 @@ session_start();
                     <li class="nav-item"><a class="nav-link" href="<?php echo get_url('home.php'); ?>">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="<?php echo get_url('profile.php'); ?>">Profile</a></li>
                     <li class="nav-item"><a class="nav-link" href="<?php echo get_url('admin/list_anime.php'); ?>">Listing</a></li>
-
+                    <li class="nav-item"><a class="nav-link" href="<?php echo get_url('MyBookmarks.php'); ?>">My Bookmarks</a></li>
                 <?php endif; ?>
                 <?php if (!is_logged_in()) : ?>
                     <li class="nav-item"><a class="nav-link" href="<?php echo get_url('login.php'); ?>">Login</a></li>
@@ -71,6 +71,9 @@ session_start();
                             <li><a class="dropdown-item" href="<?php echo get_url('admin/manage_anime_data.php'); ?>">Man. Anime Data</a></li>
                             <li><a class="dropdown-item" href="<?php echo get_url('admin/create_anime.php'); ?>">Create Listing</a></li>
                             <li><a class="dropdown-item" href="<?php echo get_url('admin/edit_anime.php'); ?>">Edit Listing</a></li>
+                            <li><a class="dropdown-item" href="<?php echo get_url('admin/anime_assoc.php'); ?>">All Anime Bookmarks</a></li>
+                            <li><a class="dropdown-item" href="<?php echo get_url('admin/allNotBook.php'); ?>">All Not Bookmarked</a></li>
+                            <li><a class="dropdown-item" href="<?php echo get_url('admin/assign_bookmarks.php'); ?>">Assign Bookmarks</a></li>
                         </ul>
                     </li>
                 <?php endif; ?>
